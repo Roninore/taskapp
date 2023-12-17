@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Все задачи</title>
+    <link rel="stylesheet" href="../nav.css">
+</head>
+<body>
+    <div id="navbar"></div>
+    <script src="../state.js"></script>
+    <script src="./all_tasks.js"></script>
+    <div style="display: flex;">
+        <div style="width: 60%; background-color: #f1f1f1;">
+            <h2>Список задач</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Название</th>
+                        <th>Создано</th>
+                        <th>Статус</th>
+                        <th>Дата создания</th>
+                        <th>Дата изменения</th>
+                        <th>Исполнители</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="task-table-body">
+                </tbody>
+            </table>
+        </div>
+        <div style="width: 40%; background-color: #ddd;">
+            <form>
+                <h2>Редактирование задачи</h2>
+                <div style="display: flex;">
+                    <div>
+                        <p id="edit_dates"></p>
+                        <label for="edit_caption">Название:</label><br>
+                        <input type="text" id="edit_caption" name="edit_caption"><br>
+                        <label for="edit_text">Текст:</label><br>
+                        <textarea id="edit_text" name="edit_text"></textarea><br>
+                        <label for="edit_state">Состояние:</label><br>
+                        <select id="edit_state" name="edit_state">
+                        <option value="not_started">Не начато</option>
+                        <option value="in_progress">Выполняется</option>
+                        <option value="waiting_for_capture">Ожидает проверки</option>
+                        <option value="ended">Выполнено</option>
+                        </select><br><br>
+                    </div>
+                    <div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Исполнители</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="edit-task-performers-table-body">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <button type="button" onclick="saveTask()">Сохранить</button>
+              </form>
+
+              <form>
+                <h2>Создание задачи</h2>
+                <div style="display: flex;">
+                    <div>
+                        <p id="create_dates"></p>
+                        <label for="create_caption">Название:</label><br>
+                        <input type="text" id="create_caption" name="create_caption"><br>
+                        <label for="create_text">Текст:</label><br>
+                        <textarea id="create_text" name="create_text"></textarea><br>
+                        <label for="create_state">Состояние:</label><br>
+                        <select id="create_state" name="create_state">
+                        <option value="not_started">Не начато</option>
+                        <option value="in_progress">Выполняется</option>
+                        <option value="waiting_for_capture">Ожидает проверки</option>
+                        <option value="ended">Выполнено</option>
+                        </select><br><br>
+                    </div>
+                    <div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Исполнители</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="create-task-performers-table-body">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <button type="button" onclick="createTask()">Создать</button>
+              </form>
+        </div>
+      </div>
+</body>
+</html>

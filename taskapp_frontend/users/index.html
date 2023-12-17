@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пользователи</title>
+    <link rel="stylesheet" href="../nav.css">
+</head>
+<body>
+    <div id="navbar"></div>
+    <script src="../state.js"></script>
+    <script src="./users.js"></script>
+    <form>
+        <label for="username">Имя пользователя:</label><br>
+        <input type="text" id="create_username" name="username"><br>
+        <label for="full_name">Полное имя:</label><br>
+        <input type="text" id="create_full_name" name="full_name"><br>
+        <label for="password">Пароль:</label><br>
+        <input type="password" id="create_password" name="password"><br>
+        <label for="role">Роль:</label><br>
+        <select id="create_role" name="role">
+          <option value="0">Исполнитель</option>
+          <option value="1">Модератор</option>
+          <option value="2">Админ</option>
+        </select><br><br>
+        <button type="button" onclick="createUser()">Создать</button>
+      </form>
+    <div id="table_container"></div>
+</body>
+</html>

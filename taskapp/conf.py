@@ -1,0 +1,29 @@
+import os
+
+BOTNAME = os.environ["TA_BOTNAME"]
+SALEBOT_API_BASE_URL = os.environ["TA_SALEBOT_API_BASE_URL"]
+SALEBOT_API_KEY = os.environ["TA_SALEBOT_API_KEY"]
+SALEBOT_CLIENT_REQUEST_TIMEOUT_SEC = 8.0
+
+BACKEND_BASE_URL = os.environ["TA_BACKEND_BASE_URL"]
+
+API_FROM_BOT_TOKEN = os.environ["TA_API_FROM_BOT_TOKEN"]
+API_FROM_RETOOL_TOKEN = os.environ["TA_API_FROM_RETOOL_TOKEN"]
+
+BOT_TOKEN = os.environ["TA_TG_BOT_TOKEN"]
+TG_BASE_URL = os.environ["TA_TG_BASE_URL"]
+
+SESSION_TTL_HOURS = 10
+DATABASE_DSN = os.environ["TA_DATABASE_DSN"]
+
+AUTO_RELOAD = bool(os.environ.get("TA_AUTO_RELOAD"))
+
+PROMETHEUS_NAME_PREFIX = os.environ.get("TA_PROMETHEUS_NAME_PREFIX")
+PROMETHEUS_PORT = int(os.environ.get("TA_PROMETHEUS_PORT", 9100))
+
+SENTRY_DSN = os.environ["TA_SENTRY_DSN"]
+ENVIRONMENT = os.environ.get("TA_ENVIRONMENT", "unknown")
+
+STATIC_DIR = os.path.join("/app", "taskapp", "static")
+
+APP_NAME = os.environ.get("TA_APP_NAME")

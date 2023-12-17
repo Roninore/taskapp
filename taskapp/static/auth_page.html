@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang=en>
+
+<head>
+    <meta charset=utf-8>
+    <title>Аутентификация</title>
+</head>
+
+<body>
+    <h1>Авторизация</h1>
+    <form method="POST">
+        <label for="username">Имя пользователя:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <input type="submit" value="Войти">
+    </form>
+    
+    <script>
+        function auth(form) {
+            console.log(form)
+            fetch('/_internal_/api/auth', {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            redirect: 'follow',
+            referrerPolicy: 'no-referrer',
+            body: JSON.stringify({ username: form.username, password: form.password })
+        })
+            .then((response) => {
+                if (response.status == 200) {
+                    setTimeout(() => {
+                        console.log('Success auth.. reloading')
+                        window.location.reload() }, 500)
+                } else if (response.status == 403) {
+                    alert('Неверное имя пользователя или пароль')
+                } else {
+                    alert(`Не удалось авторизоваться. Обновите страницу. ${response.status}s - error`)
+                }
+            })
+            .catch((reason) => {
+                alert('Не удалось авторизоваться. Обновите страницу. Unknown error.')
+            });
+        }
+        document.querySelector('form').addEventListener('submit', async (event) => {
+			event.preventDefault();
+            const form = {
+                username: document.getElementById('username').value,
+                password: document.getElementById('password').value
+            }
+			auth(form)
+        })
+    </script>
+</body>
+
+</html>

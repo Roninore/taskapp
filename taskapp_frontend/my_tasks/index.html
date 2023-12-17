@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Все задачи</title>
+    <link rel="stylesheet" href="../nav.css">
+</head>
+<body>
+    <div id="navbar"></div>
+    <script src="../state.js"></script>
+    <script src="./my_tasks.js"></script>
+    <div style="display: flex;">
+        <div style="width: 60%; background-color: #f1f1f1;">
+            <h2>Список задач</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Название</th>
+                        <th>Создано</th>
+                        <th>Статус</th>
+                        <th>Дата создания</th>
+                        <th>Дата изменения</th>
+                        <th>Исполнители</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="task-table-body">
+                </tbody>
+            </table>
+        </div>
+        <div style="width: 40%; background-color: #ddd;">
+            <form>
+                <h2>Просмотр задачи</h2>
+                <div style="display: flex;">
+                    <div>
+                        <p id="view_dates"></p>
+                        <label for="view_caption"><b>Название:</b></label><br>
+                        <p id="view_caption" name="view_caption"></p><br>
+                        <label for="view_text"><b>Текст:</b></label><br>
+                        <p id="view_text" name="view_text"></p><br>
+                        <label for="view_state"><b>Состояние:</b></label><br>
+                        <select id="view_state" name="view_state">
+                        <option value="not_started">Не начато</option>
+                        <option value="in_progress">Выполняется</option>
+                        <option value="waiting_for_capture">Ожидает проверки</option>
+                        <option value="ended">Выполнено</option>
+                        </select><br><br>
+                    </div>
+                    <div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Исполнители</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="view-task-performers-table-body">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <button type="button" onclick="saveTask()">Обновить</button>
+              </form>
+
+        </div>
+      </div>
+</body>
+</html>
