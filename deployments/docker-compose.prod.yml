@@ -45,6 +45,7 @@ services:
       - nginx
     volumes:
       - "../taskapp_frontend:/var/www/taskapp/frontend"
+      - "/apps/nginx/letsencrypt:/etc/letsencrypt"
 
 
 networks:
