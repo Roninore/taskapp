@@ -6,6 +6,14 @@ RUN apt update
 # WebDav support.
 RUN apt install -y nginx-extras libnginx-mod-http-dav-ext
 
+# Certbot certificates.
+RUN apt update \
+    && apt install -y python3 python3-venv libaugeas0 \
+    && python3 -m venv $VENV \
+    && $PIP install --upgrade pip \
+    && $PIP install certbot certbot-nginx
+
+
 # Nginx configuration.
 COPY deployments/nginx/nginx.conf /etc/nginx/nginx.conf
 
