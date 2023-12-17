@@ -1,0 +1,52 @@
+version: "3"
+
+services:
+
+  postgres:
+    container_name: postgres
+    image: postgres:14.2
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    networks:
+      - nginx
+    ports:
+      - "5433:5432"
+    volumes:
+      - "../pgdata:/var/lib/postgresql/data"
+      - "../deployments/postgres/conf:/etc/postgresql/"
+
+  taskapp:
+    container_name: taskapp
+    build:
+      context: ..
+      dockerfile: deployments/app/Dockerfile
+    volumes:
+      - "../taskapp:/app/taskapp"
+    env_file:
+      - prod.env
+    ports:
+      - "8080:8080"
+    networks:
+      - nginx
+    depends_on:
+      - postgres
+
+  nginx:
+    container_name: nginx
+    build:
+      context: ..
+      dockerfile: deployments/nginx/Dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - nginx
+    volumes:
+      - "../taskapp_frontend:/var/www/taskapp/frontend"
+
+
+networks:
+  nginx:
+    driver: bridge
