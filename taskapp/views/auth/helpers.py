@@ -58,16 +58,22 @@ async def check_session(
     return session
 
 
-async def check_manager_session(TGAGS: str | None = Cookie(default=None)):
-    session = await check_session(TGAGS=TGAGS)
+async def check_manager_session(
+    TGAGS: str | None = Cookie(default=None),
+    x_forwarded_for: str | None = Header(default=None),
+):
+    session = await check_session(TGAGS=TGAGS, x_forwarded_for=x_forwarded_for)
     if session.user_role < UserRole.manager:
         logger.info("User not a manager")
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN)
     return session
 
 
-async def check_admin_session(TGAGS: str | None = Cookie(default=None)):
-    session = await check_session(TGAGS=TGAGS)
+async def check_admin_session(
+    TGAGS: str | None = Cookie(default=None),
+    x_forwarded_for: str | None = Header(default=None),
+):
+    session = await check_session(TGAGS=TGAGS, x_forwarded_for=x_forwarded_for)
     if session.user_role < UserRole.admin:
         logger.info("User not a admin")
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN)
