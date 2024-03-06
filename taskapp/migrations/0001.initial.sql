@@ -34,3 +34,5 @@ create table "task_performer" (
     "created_timestamp" timestamp not null default (now() at time zone 'utc')
 );
 create unique index "task_performer__user_id__task_id__unique_idx" on "task_performer" ("user_id", "task_id");
+
+

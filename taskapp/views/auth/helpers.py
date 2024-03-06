@@ -1,6 +1,5 @@
 import hashlib
 import logging
-import re
 from datetime import datetime, timedelta
 
 from fastapi import Cookie, Header, HTTPException, status
@@ -33,13 +32,6 @@ async def check_session(
     if not x_forwarded_for:
         logger.info("x_forwarded_for is empty")
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN)
-
-    client_ip = x_forwarded_for.split(", ")[0]
-    if not re.search("10\\.0\\.0\\.\\d{1,3}", client_ip):
-        logger.info("%s is not trusted ip", client_ip)
-        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN)
-    else:
-        logger.info("%s is trusted ip", client_ip)
 
     session = await app_state.session_repo.get(_id=TGAGS)
     if not session:
